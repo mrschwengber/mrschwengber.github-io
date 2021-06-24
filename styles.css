@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=Lora&family=Mukta&display=swap');
+body {
+    font-family: 'Mukta', sans-serif;
+    margin: 0 10%;
+  }
+  
+  .container {
+    border: 2px solid #a2a2a6;
+    padding: 10px;
+    margin: 10px auto;
+  }
+  
+  .color-container {
+    width: 100%;
+  }
+  
+  .color-panel {
+    display: inline-block;
+    width: 32%;
+    text-align: center;
+    margin: 20px auto;
+    min-height: 100px;
+  }
+  
+  .azul-clio {
+    background-color: #ACC5F9;
+    color: #000;
+  }
+  
+  .branco-gelo {
+    background-color: #F4F5F7;
+    color: #000;
+  }
+  
+  .azul-petroleo {
+    background-color: #535F78;
+    color: #fff;
+  }
+  
+  .cinza {
+    background-color: #C2C3C4;
+  }
+  
+  .font-panel {
+    width: 45%;
+    display: inline-block;
+  }
+  
+  .font-label {
+    font-size: 20px;
+    text-decoration: underline;
+  }
+  
+  .regular {
+    font-style: normal;
+  }
+  
+  .italic {
+    font-style: italic;
+  }
+  
+  .bold {
+    font-weight: 700;
+  }
+
+  .mukta{
+    font-family: 'Mukta', sans-serif;
+  }
+
+  .dm-mono{
+      font-family: 'DM Mono', monospace;
+  }
+
+  .lora{
+      font-family: 'Lora', serif;
+  }
+  
+  .text-panel h1 {
+    font-weight: 700;
+    font-size: 32px;
+    font-family: 'Mukta', sans-serif;
+    text-align: center;
+  }
+  
+  .text-panel h2 {
+    font-weight: 500;
+    font-size: 18px;
+    font-family: 'Lora', sans-serif;
+    text-align: center;
+  }
+  
+  .text-panel p {
+    font-weight: 400;
+    font-size: 14px;
+    font-family: 'DM Mono', sans-serif;
+    text-align: center;
+  }
+  .font-label-dm-mono{
+      font-family: 'DM Mono', monospace;
+  }
+  .font-label-mukta{
+      font-family: 'Mukta', sans-serif;
+  }
+  .font-label-lora{
+      font-family: 'Lora', serif;
+  }
+  h1, h2{
+      text-align: center;
+  }
+  .btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+  .btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+  .btn-primary{
+    color: #000;
+    background-color: #ACC5F8;
+    border-color: #ACC5F8;
+  }
+  .btn-primary:hover {
+    color: #000;
+    background-color: #8fa3ce;
+    border-color: #8fa3ce;
+  }
+  .btn-secondary {
+    color: #fff;
+    background-color: #535F78;
+    border-color: #535F78;
+}
+  .btn-secondary:hover {
+    color: #fff;
+    background-color: #3b4355;
+    border-color: #3b4355;
+}
+.btn-link {
+  font-weight: 400;
+  color: #007bff;
+  background-color: transparent;
+}
+.btn-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+  background-color: transparent;
+  border-color: transparent;
+}
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn-success:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}
