@@ -6,18 +6,18 @@ Spread_S(0);
 HoraInicio(911);
 HoraFim(1201);
 HoraFechamento(1659);
-Breakeven(0);
+Breakeven(1);
 Trava(1000);
 IFR_C(78);
 IFR_V(25);
-sGain(25);
-Greed(1);
+sGain(600);
+Greed(0);
  
 
 var
 
-entrada, stop, protecao,entrada_v, stop_v, protecao_v, break_c, break_v, stop_b, stop_s, break_stop_s, break_stop_b,
-stopito_b, stopito_v, alvo_c, alvo_v : float;
+entrada, stop, protecao,entrada_v, stop_v, protecao_v, break_c, break_v, stopito_b, stopito_v, 
+alvo_c, alvo_v : float;
 fBoolUp : float;
 fBoolDown : float;
 file_compra, file_venda : boolean;
@@ -40,7 +40,6 @@ begin
   begin 
       entrada := close[0];
       stop := low[0] - 10;
-      stop_b := entrada - stop;
       Stopito_B := entrada - Stop_Max;
       break_c := Price + sGain;
       protecao := entrada + trava;
@@ -52,50 +51,51 @@ begin
   begin 
       entrada := close[0];
       stop := low[0] - 10;
-      stop_b := entrada - stop;
       //Stopito_B := Price - Stop_Max;
       break_c := Price + sGain;
       //protecao := entrada + trava;
       BuyLimit(entrada-Spread_E);
    end;
+
         se (file_compra) and (HasPosition = true) and (Greed = 0) entao
   begin 
       entrada := close[0];
       stop := low[0] - 10;
-      stop_b := entrada - stop;
       Stopito_B := Price - Stop_Max;
       break_c := Price + sGain;
       //protecao := entrada + trava;
       BuyLimit(entrada-Spread_E);
   end;
+
+
+ //venda
   se (file_venda) and (HasPosition = false) entao
   begin 
     entrada_v := close[0];
     stop_v := high[0] + 10;
-    stop_s := stop_v - entrada_v;
     Stopito_V := Entrada_V + Stop_Max;
     protecao_v := entrada_v - trava;
     break_v := Price - sGain;
     SellShortLimit(entrada_v+Spread_E);
     alvo_v := entrada_v - meta;
     end;
+
     se (file_venda) and (HasPosition = true) and (Greed = 1) entao
   begin 
     entrada_v := close[0];
     stop_v := high[0] + 10;
-    stop_s := stop_v - entrada_v;
     //Stopito_V := Price + Stop_Max;
-    //protecao_v := entrada_v - stop_s;
+    //protecao_v := entrada_v - trava;
     break_v := Price - sGain;
     SellShortLimit(entrada_v+Spread_E);
     end;
+
     se (file_venda) and (HasPosition = true) and (Greed = 0) entao
   begin 
     entrada_v := close[0];
     stop_v := high[0] + 10;
-    stop_s := stop_v - entrada_v;
     Stopito_V := Price + Stop_Max;
-    //protecao_v := entrada_v - stop_s;
+    //protecao_v := entrada_v - trava;
     break_v := Price - sGain;
     SellShortLimit(entrada_v+Spread_E);
     end;    
@@ -104,13 +104,11 @@ begin
   se (IsBought) and (Breakeven = 1) and (high[0] >= protecao) and (HasPendingOrders) then
   begin
   Stopito_B := Break_C;
-  Break_Stop_B := Break_C;
   end;
 
   se (IsSold) and (Breakeven = 1) and (low[0] <= Protecao_V) and (HasPendingOrders) then
   begin
   Stopito_V := Break_V;
-  Break_stop_s := Break_V;
   end;  
       
   //execução de saída
