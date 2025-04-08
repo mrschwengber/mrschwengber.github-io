@@ -12,28 +12,33 @@ IFR_C(78);
 IFR_V(25);
 sGain(600);
 Greed(0);
+Range(2300);
  
 
 var
 
 entrada, stop, protecao,entrada_v, stop_v, protecao_v, break_c, break_v, stopito_b, stopito_v, 
-alvo_c, alvo_v : float;
+alvo_c, alvo_v, dMaxima, dMinima, amplitude : float;
 fBoolUp : float;
 fBoolDown : float;
 file_compra, file_venda : boolean;
+
 
 
 begin
   //indicadores
   fboolup := BollingerBands(2.00,20,0)|0|;
   fbooldown := BollingerBands(2.00,20,0)|1|;
+  dMaxima := HighD(0);
+  dMinima := LowD(0);
+  Amplitude := dMaxima - dMinima;
   
   //sinais de entrada
   file_compra := (Close[0] > fboolup[0]) and (RSI(9,0)[0] > IFR_C) and (close[0] > mediaexp(210,close)[0]) e 
-  (close[0] > open[0]) e (time >= HoraInicio) e (time < HoraFim);
+  (close[0] > open[0]) e (time >= HoraInicio) e (time < HoraFim) e (Amplitude < Range);
 
   file_venda := (Close[0] < fbooldown[0]) and (RSI(9,0)[0] < IFR_V) and (close[0] < mediaexp(210,close)[0]) e 
-  (time >= HoraInicio) e (time < HoraFim) e (close[0] < open[0]); 
+  (time >= HoraInicio) e (time < HoraFim) e (close[0] < open[0]) e (Amplitude < Range); 
   
   //execução de entrada
   se (file_compra) and (HasPosition = false) entao
